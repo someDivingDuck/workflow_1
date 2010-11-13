@@ -17,7 +17,18 @@ master / Clean-branch / dirty-branch principle:
     Code updates from other branches _COULD (??) be done by merging
     Alternatively this can be achieved by using the above technique.
 
-    Once should commit as often as possible.
-    Each time a new significant state is being reach
-    it's merged into the clean branch via 'git merge --squash'.
+    One should commit as often as possible.
+    Each time a new significant state is being reached
+    it's merged into the clean branch via 'git merge --squash myDirtyBranch'.
     Commits on the dirty branch get a tag to represent this action.
+
+    This results in the clean-branch beeing relatively "readable".
+    It might even be pushed (this is no problem since 'git merge --squash' merely ADDS history; as opposed to rebase...).
+    The dirtyBranch should never be pushed at all.
+
+    Since the clean-branches history is quite readable it can 
+    be merged into master using a the regular merge-command 'git merge cleanBranch'
+
+    Regular 'git log' will otuput these merge-commits.
+    To avoid this, use 'git log --first-parent'.
+
