@@ -1,0 +1,23 @@
+Synchronizing with other branches' work, when not being on a dirty branch:
+==========================================================================
+    e.g. feature1
+
+        for foo in $(git diff --name-only master);do vimdiff ${foo} <(git show master:${foo});done
+
+    Doing merging/rebasing instead often makes it impossible to rebase ("clean up") history afterwards.
+    Although merging could be very practical in dirty-branches
+    (since the respective clean-branch merely does 'git merge --squash myDirtyBranch') 
+
+
+master / Clean-branch / dirty-branch principle:
+===============================================
+    e.g. decoration / decorationDirty
+
+    The dirty branch is the place for actual development.
+    Code updates from other branches _COULD (??) be done by merging
+    Alternatively this can be achieved by using the above technique.
+
+    Once should commit as often as possible.
+    Each time a new significant state is being reach
+    it's merged into the clean branch via 'git merge --squash'.
+    Commits on the dirty branch get a tag to represent this action.
